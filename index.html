@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>xrudzielec.lol</title>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  header img {
+    margin-top: 20px; /* logo bliżej góry */
+    height: 400px; /* powiększone 5x */
+  }
+
+  .icon-row {
+    margin-top: 100px; /* trochę luzu pod logo */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 100px; /* powiększone 5x */
+  }
+
+  .icon-row img.icon {
+    width: 500px; /* powiększone 5x */
+    height: 500px; /* powiększone 5x */
+    cursor: pointer;
+  }
+
+  .icon-row img.arrow {
+    width: 250px; /* powiększone 5x */
+    height: 250px; /* powiększone 5x */
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <img src="assets/logo.png" alt="Logo">
+</header>
+
+<div class="icon-row">
+  <img src="assets/arrow_left.png" alt="Strzałka w lewo" class="arrow" onclick="prevIcon()">
+  
+  <img src="assets/yt.png" alt="Ikona 1" class="icon" onclick="goToPage('https://www.youtube.com/@xrudzielec')">
+  <img src="assets/discord.png" alt="Ikona 2" class="icon" onclick="goToPage('https:/discord.com/users/1010845943433801731')">
+  <img src="assets/ja.png" alt="Ikona 3" class="icon" onclick="alert('siema jestem rudy i jestem zjebem')">
+  
+  <img src="assets/arrow_right.png" alt="Strzałka w prawo" class="arrow" onclick="nextIcon()">
+</div>
+
+<script>
+  const icons = document.querySelectorAll('.icon-row img.icon');
+  let currentIndex = 0;
+
+  function showIcon(index) {
+    icons.forEach((icon, i) => {
+      icon.style.display = (i === index) ? 'inline' : 'none';
+    });
+  }
+
+  function prevIcon() {
+    currentIndex = (currentIndex - 1 + icons.length) % icons.length;
+    showIcon(currentIndex);
+  }
+
+  function nextIcon() {
+    currentIndex = (currentIndex + 1) % icons.length;
+    showIcon(currentIndex);
+  }
+
+  function goToPage(url) {
+    window.location.href = url;
+  }
+
+  showIcon(currentIndex);
+</script>
+
+</body>
+</html>
